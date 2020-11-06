@@ -27,15 +27,15 @@ add t3, x0, a3 # init m counter
 add t4, x0, a4 # init matrix_current pointer
 cycle:
 lw t5, 0(t4) #current value
-bge x0, t5, next_value # if(0 < t5) sum += current
+bltz t5, next_value # if(0 < t5) sum += current
 add t1, t1, t5
 next_value: # decrement n counter and move the poiner to next value 
-addi t2, t2, -1
+addi t2, t2, -1 
 addi t4, t4, 4
-blt x0, t2, cycle # if (0 > n counter) если n > 0, то мы находимся в той же строке - все хорошо   
+bgez t2, cycle # if (0 > n counter) если n > 0, то мы находимся в той же строке - все хорошо   
 addi t3, t3, -1
 add t2, x0, a2
-blt x0, t3, cycle # if (0 > m counter) 
+bgez t3, cycle # if (0 > m counter) 
 add a0, x0, t1 # return value = result 
 ret
 print:
