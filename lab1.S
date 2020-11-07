@@ -32,10 +32,10 @@ add t1, t1, t5
 next_value: # decrement n counter and move the poiner to next value 
 addi t2, t2, -1 
 addi t4, t4, 4
-bgez t2, cycle # if (0 > n counter) если n > 0, то мы находимся в той же строке - все хорошо   
+bgez t2, cycle # if (0 >= n counter) если n >= 0, то мы находимся в той же строке - все хорошо   
 addi t3, t3, -1
 add t2, x0, a2
-bgez t3, cycle # if (0 > m counter) 
+bgez t3, cycle # if (0 >= m counter) 
 add a0, x0, t1 # return value = result 
 ret
 print:
